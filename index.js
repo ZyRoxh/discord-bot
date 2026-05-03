@@ -304,6 +304,16 @@ client.on('interactionCreate', async (interaction) => {
   await interaction.update({ embeds: [embed] });
 });
 
+const http = require('http');
+const PORT = process.env.PORT || 8080;
+
+http.createServer((req, res) => {
+  res.writeHead(200, { 'Content-Type': 'text/plain' });
+  res.end('OK');
+}).listen(PORT, () => {
+  console.log(`Health server active on port ${PORT}`);
+});
+
 client.login(process.env.TOKEN).catch((error) => console.error('Login failed:', error));
 
 // .env file:
